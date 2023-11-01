@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <title>CART SHOP</title>
+  </head>
+  <body>
+    <% for(let result of results) { %>
+    <form action="/history" method="post">
+      <div class="card container mt-5" style="width: 18rem">
+        <img src="/img/<%= result.foto_barang %>" name="foto" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title" name="nama"><%= result.nama_barang %></h5>
+          <p class="card-text">ayo buruan beli.dapat diskon besar besaran dapat kan dengan harga <span class="harga" name="harga"><%= result.harga_barang %></span></p>
+          <button type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto">Pesan</button>
+        </div>
+      </div>
+    </form>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hargaElements = document.querySelectorAll(".harga");
+
+        hargaElements.forEach(function (element) {
+          const harga = parseInt(element.textContent);
+          const hargaFormat = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR",
+          }).format(harga);
+
+          element.textContent = hargaFormat;
+        });
+      });
+    </script>
+  </body>
+</html>
