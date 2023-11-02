@@ -169,11 +169,22 @@ app.get("/cart/:id", (req, res) => {
 });
 // route pembelian
 app.post("/history", (req, res) => {
-  const { foto, harga, nama } = req.body;
-  const query = 'INSERT INTO tb_history (id_history,nama,harga,foto) VALUES ("",?,?,?);';
+  const { nama, harga, foto } = req.body;
+  const query = "INSERT INTO tb_history(id_history,name,harga,foto) VALUES ('',?,?,?);";
   koneksi.query(query, [nama, harga, foto], (error, result) => {
-    if (error) throw error;
-    res.redirect("/");
+    if (error) {
+      res.send(error);
+    } else {
+      res.redirect("/customer");
+    }
+  });
+});
+
+// ==========history customer
+app.get("/hiscus", (req, res) => {
+  const query = "SELECT * FROM tb_history";
+  koneksi.query(query, (error, result) => {
+    res.render("history", { results: result });
   });
 });
 // port

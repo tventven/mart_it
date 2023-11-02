@@ -10,10 +10,13 @@
     <% for(let result of results) { %>
     <form action="/history" method="post">
       <div class="card container mt-5" style="width: 18rem">
-        <img src="/img/<%= result.foto_barang %>" name="foto" class="card-img-top" alt="..." />
+        <img src="/img/<%= result.foto_barang %>" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title" name="nama"><%= result.nama_barang %></h5>
-          <p class="card-text">ayo buruan beli.dapat diskon besar besaran dapat kan dengan harga <span class="harga" name="harga"><%= result.harga_barang %></span></p>
+          <h5 class="card-title"><%= result.nama_barang %></h5>
+          <p class="card-text">ayo buruan beli.dapat diskon besar besaran dapat kan dengan harga <span class="harga"><%= result.harga_barang %></span></p>
+          <input type="hidden" name="nama" value="<%= result.nama_barang %>" />
+          <input type="hidden" name="harga" value="<%= result.harga_barang %>" />
+          <input type="hidden" name="foto" value="<%= result.foto_barang %>" />
           <button type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto">Pesan</button>
         </div>
       </div>
